@@ -14,6 +14,13 @@ function initTheme() {
     const body = document.body;
     const icon = themeToggle.querySelector('.material-symbols-rounded');
 
+    const updateLogos = (isDark) => {
+        const logoImages = document.querySelectorAll('.logo img');
+        logoImages.forEach(img => {
+            img.src = isDark ? 'assets/images/march_icon_color.png' : 'assets/images/march_icon_color_dark.png';
+        });
+    };
+
     // Check system preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem('theme');
@@ -21,9 +28,14 @@ function initTheme() {
     if (savedTheme === 'light') {
         body.classList.remove('dark-mode');
         icon.textContent = 'light_mode';
+        updateLogos(false);
     } else if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         body.classList.add('dark-mode');
         icon.textContent = 'dark_mode';
+        updateLogos(true);
+    } else {
+        // Fallback for no saved theme and no preference (default to dark in HTML)
+        updateLogos(body.classList.contains('dark-mode'));
     }
 
     themeToggle.addEventListener('click', () => {
@@ -32,6 +44,7 @@ function initTheme() {
 
         icon.textContent = isDark ? 'dark_mode' : 'light_mode';
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateLogos(isDark);
     });
 }
 
