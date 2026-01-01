@@ -15,6 +15,7 @@
     --shape-blue: rgba(59, 130, 246, 0.5);
     --shape-pink: rgba(244, 114, 182, 0.5);
 
+    --accent-teal: #008888;
     --transition-speed: 0.3s;
 }
 
@@ -29,6 +30,8 @@ body.dark-mode {
 
     --shape-blue: rgba(59, 130, 246, 0.15);
     --shape-pink: rgba(244, 114, 182, 0.15);
+
+    --accent-teal: #00aaaa;
 }
 
 * {
@@ -327,7 +330,7 @@ main {
     display: inline-block;
     padding: 0.4rem 1rem;
     background: var(--bg-secondary);
-    color: var(--accent-blue);
+    color: var(--accent-teal);
     border-radius: 100px;
     font-weight: 700;
     font-size: 0.75rem;
