@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>March Photobox | Real-time Screenshot Management</title>
+    <title>March Photobox</title>
     <meta name="description"
         content="A modern, clean Windows desktop app for real-time screenshot preview, labeling, and social media post planning.">
 
@@ -34,11 +34,29 @@
         <div class="nav-container">
             <div class="logo">
                 <img src="assets/images/march_icon_color.png" alt="March Photobox Icon">
-                <span>March Photobox</span>
+                <span data-i18n="nav_logo">March Photobox</span>
             </div>
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="https://github.com/Ayrlin-Renata/march" target="_blank">Repository</a>
+                <a href="https://ko-fi.com/ayrlin" target="_blank" class="button">
+                    <span class="material-symbols-rounded">favorite</span>
+                    <span data-i18n="hero_support">Ayrlin on Ko-fi</span>
+                </a>
+
+                <div class="lang-selector">
+                    <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
+                        <span class="material-symbols-rounded">language</span>
+                        <span id="current-lang">English</span>
+                        <span class="material-symbols-rounded chevron">expand_more</span>
+                    </button>
+                    <div class="lang-menu" id="lang-menu">
+                        <div class="lang-item" data-value="en">English</div>
+                        <div class="lang-item" data-value="zh">中文</div>
+                        <div class="lang-item" data-value="ja">日本語</div>
+                        <div class="lang-item" data-value="ko">한국어</div>
+                        <div class="lang-item" data-value="id">Bahasa Indonesia</div>
+                    </div>
+                </div>
+
                 <button id="theme-toggle" class="icon-button">
                     <span class="material-symbols-rounded">dark_mode</span>
                 </button>
@@ -49,24 +67,25 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <div class="badge">Windows Desktop App</div>
-                <h1>Beautiful workflows for <span>your captures.</span></h1>
-                <p>Sift through screenshots and plan your posts effortlessly. March Photobox watches your folders and
+                <div class="badge" data-i18n="hero_badge">Ayrlin Renata</div>
+                <h1 data-i18n="hero_title">March <span>Photobox</span></h1>
+                <p data-i18n="hero_desc">Sift through screenshots and plan your posts effortlessly. March Photobox
+                    watches your folders and
                     brings your feed to life in real-time.</p>
                 <div class="cta-group">
                     <a href="#" id="download-btn" class="button primary">
                         <span class="material-symbols-rounded">download</span>
-                        Download for Windows
+                        <span data-i18n="hero_download">Download for Windows</span>
                     </a>
                     <a href="https://ko-fi.com/ayrlin" target="_blank" class="button secondary">
                         <span class="material-symbols-rounded">favorite</span>
-                        Support on Ko-fi
+                        <span data-i18n="hero_support">Support on Ko-fi</span>
                     </a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="placeholder-img main-screenshot">
-                    <span>Application Interface Screenshot Placeholder</span>
+                    <span data-i18n="img_placeholder_main">Application Interface Screenshot Placeholder</span>
                 </div>
             </div>
         </section>
@@ -74,21 +93,25 @@
         <section id="features" class="feature-page">
             <div class="feature-content">
                 <div class="number">01</div>
-                <h2>Immediate Preview & Labeling</h2>
-                <p>Real-time folder watching means your newest captures appear instantly. Automatically group images
+                <h2 data-i18n="feature1_title">Immediate Preview & Labeling</h2>
+                <p data-i18n="feature1_desc">Real-time folder watching means your newest captures appear instantly.
+                    Automatically group images
                     taken in quick succession with <strong>Burst Grouping</strong>, and navigate your library with ease.
                 </p>
                 <ul>
-                    <li><span class="material-symbols-rounded">visibility</span> Multi-folder watching & Burst grouping
+                    <li><span class="material-symbols-rounded">visibility</span> <span
+                            data-i18n="feature1_li1">Multi-folder watching & Burst grouping</span>
                     </li>
-                    <li><span class="material-symbols-rounded">label</span> Quick cycle labeling with right-click</li>
-                    <li><span class="material-symbols-rounded">zoom_in</span> High-performance lightbox with pan/zoom
+                    <li><span class="material-symbols-rounded">label</span> <span data-i18n="feature1_li2">Quick cycle
+                            labeling with right-click</span></li>
+                    <li><span class="material-symbols-rounded">zoom_in</span> <span
+                            data-i18n="feature1_li3">High-performance lightbox with pan/zoom</span>
                     </li>
                 </ul>
             </div>
             <div class="feature-visual">
                 <div class="placeholder-img feature-shot">
-                    <span>Preview & Labeling Image</span>
+                    <span data-i18n="img_placeholder_feature1">Preview & Labeling Image</span>
                 </div>
             </div>
         </section>
@@ -96,22 +119,23 @@
         <section class="feature-page reverse">
             <div class="feature-content">
                 <div class="number">02</div>
-                <h2>Social Media Image Post Planning</h2>
-                <p>Prepare your stories and image posts for X, Bluesky, and more. Use the <strong>Story Builder</strong>
+                <h2 data-i18n="feature2_title">Social Media Image Post Planning</h2>
+                <p data-i18n="feature2_desc">Prepare your stories and image posts for X, Bluesky, and more. Use the
+                    <strong>Story Builder</strong>
                     to drag images into layout slots and manage captions with the <strong>Text Preset Manager</strong>.
                 </p>
                 <ul>
-                    <li><span class="material-symbols-rounded">grid_view</span> Platform-specific layouts (X, Bluesky,
-                        etc.)</li>
-                    <li><span class="material-symbols-rounded">content_paste</span> Template & Preset manager for
-                        hashtags/emojis</li>
-                    <li><span class="material-symbols-rounded">aspect_ratio</span> Quick crop and slot assignment (1-9
-                        hotkeys)</li>
+                    <li><span class="material-symbols-rounded">grid_view</span> <span
+                            data-i18n="feature2_li1">Platform-specific layouts (X, Bluesky, etc.)</span></li>
+                    <li><span class="material-symbols-rounded">content_paste</span> <span
+                            data-i18n="feature2_li2">Template & Preset manager for hashtags/emojis</span></li>
+                    <li><span class="material-symbols-rounded">aspect_ratio</span> <span data-i18n="feature2_li3">Quick
+                            crop and slot assignment (1-9 hotkeys)</span></li>
                 </ul>
             </div>
             <div class="feature-visual">
                 <div class="placeholder-img feature-shot">
-                    <span>Social Media Planning Image</span>
+                    <span data-i18n="img_placeholder_feature2">Social Media Planning Image</span>
                 </div>
             </div>
         </section>
@@ -119,18 +143,22 @@
         <section class="feature-page">
             <div class="feature-content">
                 <div class="number">03</div>
-                <h2>Hold, Drag & Drop Sharing</h2>
-                <p>No more digging through folders. Hold left-click on any thumbnail to immediately drag it into
+                <h2 data-i18n="feature3_title">Hold, Drag & Drop Sharing</h2>
+                <p data-i18n="feature3_desc">No more digging through folders. Hold left-click on any thumbnail to
+                    immediately drag it into
                     Discord, your browser, or any external program.</p>
                 <ul>
-                    <li><span class="material-symbols-rounded">drag_pan</span> Seamless external sharing</li>
-                    <li><span class="material-symbols-rounded">groups</span> Instant Discord uploads</li>
-                    <li><span class="material-symbols-rounded">flash_on</span> Zero-latency workflow</li>
+                    <li><span class="material-symbols-rounded">drag_pan</span> <span data-i18n="feature3_li1">Seamless
+                            external sharing</span></li>
+                    <li><span class="material-symbols-rounded">groups</span> <span data-i18n="feature3_li2">Instant
+                            Discord uploads</span></li>
+                    <li><span class="material-symbols-rounded">flash_on</span> <span
+                            data-i18n="feature3_li3">Zero-latency workflow</span></li>
                 </ul>
             </div>
             <div class="feature-visual">
                 <div class="placeholder-img feature-shot">
-                    <span>Drag & Drop Sharing Image</span>
+                    <span data-i18n="img_placeholder_feature3">Drag & Drop Sharing Image</span>
                 </div>
             </div>
         </section>
@@ -143,16 +171,17 @@
                     <img src="assets/images/march_icon_color.png" alt="">
                     <span>March Photobox</span>
                 </div>
-                <p>Ayrlin Renata Copyright 2025 - All rights reserved</p>
+                <p data-i18n="footer_copy">Ayrlin Renata Copyright 2025 - All rights reserved</p>
             </div>
             <div class="footer-links">
                 <a href="https://ko-fi.com/ayrlin" target="_blank">Ko-fi</a>
                 <a href="https://github.com/Ayrlin-Renata/march" target="_blank">GitHub</a>
-                <a href="mailto:ayrlin.renata@gmail.com">Contact</a>
+                <a href="mailto:ayrlin.renata@gmail.com" data-i18n="footer_contact">Contact</a>
             </div>
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
+    initLanguage();
     fetchLatestRelease();
     initScrollAnimations();
     initCanvasAnimation();
@@ -32,6 +33,74 @@ function initTheme() {
         icon.textContent = isDark ? 'dark_mode' : 'light_mode';
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
+}
+
+/**
+ * Localization (i18n) Logic
+ */
+function initLanguage() {
+    const langSelector = document.querySelector('.lang-selector');
+    const langToggle = document.getElementById('lang-toggle');
+    const langMenu = document.getElementById('lang-menu');
+    const currentLangText = document.getElementById('current-lang');
+    const langItems = document.querySelectorAll('.lang-item');
+
+    const savedLang = localStorage.getItem('lang') || navigator.language.split('-')[0] || 'en';
+    const finalLang = i18nData[savedLang] ? savedLang : 'en';
+
+    // Set initial state
+    updateLanguage(finalLang);
+
+    // Toggle menu
+    langToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = langSelector.classList.toggle('active');
+        langToggle.setAttribute('aria-expanded', isActive);
+    });
+
+    // Close menu on click outside
+    document.addEventListener('click', () => {
+        langSelector.classList.remove('active');
+        langToggle.setAttribute('aria-expanded', 'false');
+    });
+
+    // Handle item selection
+    langItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const selected = item.getAttribute('data-value');
+            updateLanguage(selected);
+            localStorage.setItem('lang', selected);
+            langSelector.classList.remove('active');
+            langToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
+
+function updateLanguage(lang) {
+    const data = i18nData[lang];
+    if (!data) return;
+
+    // Update current lang text in UI
+    const currentItem = document.querySelector(`.lang-item[data-value="${lang}"]`);
+    const currentLangText = document.getElementById('current-lang');
+    if (currentItem && currentLangText) {
+        currentLangText.textContent = currentItem.textContent;
+    }
+
+    // Update active class in menu
+    document.querySelectorAll('.lang-item').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-value') === lang);
+    });
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (data[key]) {
+            el.innerHTML = data[key];
+        }
+    });
+
+    // Update document title and description
+    document.title = lang === 'en' ? 'March Photobox' : `March Photobox | ${data.hero_title.replace('<span>', '').replace('</span>', '').replace('<span>', '').replace('</span>', '')}`;
 }
 
 /**
