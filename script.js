@@ -140,17 +140,24 @@ async function fetchLatestRelease() {
 
         if (exeAsset) {
             downloadBtn.href = exeAsset.browser_download_url;
-            const versionSpan = document.createElement('span');
-            versionSpan.style.fontSize = '0.7rem';
-            versionSpan.style.opacity = '0.7';
-            versionSpan.style.marginLeft = '8px';
-            versionSpan.textContent = `v${data.tag_name}`;
-            downloadBtn.appendChild(versionSpan);
+
+            // Add version label if not already present
+            if (!downloadBtn.querySelector('.version-tag')) {
+                const versionSpan = document.createElement('span');
+                versionSpan.className = 'version-tag';
+                versionSpan.style.fontSize = '0.7rem';
+                versionSpan.style.opacity = '0.7';
+                versionSpan.style.marginLeft = '8px';
+                versionSpan.textContent = `v${data.tag_name}`;
+                downloadBtn.appendChild(versionSpan);
+            }
         } else {
+            // Fallback to the latest release page if no exe found
             downloadBtn.href = `https://github.com/${repo}/releases/latest`;
         }
     } catch (err) {
         console.error('GitHub API Error:', err);
+        // Default fallback to releases page
         downloadBtn.href = `https://github.com/${repo}/releases`;
     }
 }
