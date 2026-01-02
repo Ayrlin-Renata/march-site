@@ -157,13 +157,17 @@ async function fetchLatestRelease() {
 
             // Add version label if not already present
             if (!downloadBtn.querySelector('.version-tag')) {
+                const btnText = downloadBtn.querySelector('.btn-text');
                 const versionSpan = document.createElement('span');
                 versionSpan.className = 'version-tag';
                 versionSpan.style.fontSize = '0.7rem';
                 versionSpan.style.opacity = '0.7';
-                versionSpan.style.marginLeft = '8px';
-                versionSpan.textContent = `v${data.tag_name}`;
-                downloadBtn.appendChild(versionSpan);
+                versionSpan.textContent = `${data.tag_name}`;
+                if (btnText) {
+                    btnText.appendChild(versionSpan);
+                } else {
+                    downloadBtn.appendChild(versionSpan);
+                }
             }
         } else {
             // Fallback to the latest release page if no exe found, or the specific release page
