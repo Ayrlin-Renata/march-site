@@ -25,7 +25,7 @@ const i18nData = {
         feature3_desc: "It's a small thing, but big for anyone who needs it. Hold left-click on any thumbnail to drag it into chat apps, your browser, or any external program.",
         feature3_li1: "Hold + Drag to share",
         feature3_li2: "I actually use my own app, so you get my quality of life features",
-        footer_copy: "Ayrlin Renata Copyright 2025 - All rights reserved.\nPreview images may contain portions of images depicting IP not owned by me.",
+        footer_copy: "Ayrlin Renata Copyright 2025 - All rights reserved.\nPreview images may contain portions of images depicting IP not owned by me.\nLanguages other than English are provided via machine translation, so I apologise if there are errors.",
         footer_contact: "Contact"
     },
     zh: {
@@ -54,7 +54,7 @@ const i18nData = {
         feature3_desc: "这虽然只是个小功能，但对有需要的人来说意义重大。在任何缩略图上长按左键，即可将其拖入聊天应用、浏览器或任何外部程序。",
         feature3_li1: "按住 + 拖拽即可分享",
         feature3_li2: "我自己也在用这款应用，所以你会享受到我定制的各种便利功能",
-        footer_copy: "Ayrlin Renata 版权所有 2025 - 保留所有权利。\n预览图像可能包含部分非我所有的 IP 内容。",
+        footer_copy: "Ayrlin Renata 版权所有 2025 - 保留所有权利。\n预览图像可能包含部分非我所有的 IP 内容。\n英语以外的语言由机器翻译提供，如有错误敬请谅解。",
         footer_contact: "联系我们"
     },
     ja: {
@@ -83,7 +83,7 @@ const i18nData = {
         feature3_desc: "小さな機能ですが、必要とする人にとっては大きな違いです。サムネイルを左クリックでホールドして、チャットアプリやブラウザ、外部プログラムにドラッグできます。",
         feature3_li1: "ホールド＋ドラッグで共有",
         feature3_li2: "私自身が愛用しているので、こだわりの便利機能が詰まっています",
-        footer_copy: "Ayrlin Renata Copyright 2025 - All rights reserved.\nプレビュー画像には、私が所有していない IP を描いた画像の一部が含まれている場合があります。",
+        footer_copy: "Ayrlin Renata Copyright 2025 - All rights reserved.\nプレビュー画像には、私が所有していない IP を描いた画像の一部が含まれている場合があります。\n英語以外の言語は機械翻訳によるものです。誤りがある場合はご容赦ください。",
         footer_contact: "連絡先"
     },
     ko: {
@@ -112,7 +112,7 @@ const i18nData = {
         feature3_desc: "사소해 보일 수 있지만, 필요한 사람에게는 큰 기능입니다. 썸네일을 왼쪽 클릭으로 유지한 채 채팅 앱, 브라우저 또는 외부 프로그램으로 드래그할 수 있습니다.",
         feature3_li1: "클릭 유지 + 드래그로 공유",
         feature3_li2: "제가 직접 사용하는 앱이라서 여러 편의 기능들이 녹아 있습니다",
-        footer_copy: "Ayrlin Renata Copyright 2025 - All rights reserved.\n미리보기 이미지에는 제가 소유하지 않은 IP가 포함되어 있을 수 있습니다.",
+        footer_copy: "Ayrlin Renata Copyright 2025 - All rights reserved.\n미리보기 이미지에는 제가 소유하지 않은 IP가 포함되어 있을 수 있습니다.\n영어 이외의 언어는 기계 번역으로 제공되므로 오류가 있을 수 있는 점 양해 부탁드립니다.",
         footer_contact: "문의하기"
     },
     id: {
@@ -141,7 +141,7 @@ const i18nData = {
         feature3_desc: "Ini hal kecil, tapi besar bagi siapa pun yang membutuhkannya. Tahan klik kiri pada thumbnail apa pun untuk menyeretnya ke aplikasi obrolan, browser, atau program eksternal apa pun.",
         feature3_li1: "Tahan + Seret untuk berbagi",
         feature3_li2: "Saya benar-benar menggunakan aplikasi saya sendiri, jadi Anda mendapatkan fitur kualitas hidup saya",
-        footer_copy: "Ayrlin Renata Hak Cipta 2025 - Semua hak dilindungi undang-undang.\nGambar pratinjau mungkin mengandung bagian gambar yang menggambarkan IP yang tidak saya miliki.",
+        footer_copy: "Ayrlin Renata Hak Cipta 2025 - Semua hak dilindungi undang-undang.\nGambar pratinjau mungkin mengandung bagian gambar yang menggambarkan IP yang tidak saya miliki.\nBahasa selain Inggris disediakan melalui terjemahan mesin, jadi saya mohon maaf jika ada kesalahan.",
         footer_contact: "Kontak"
     }
 };
