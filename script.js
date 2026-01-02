@@ -131,10 +131,24 @@ async function fetchLatestRelease() {
     }
 
     try {
-        const response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
-        if (!response.ok) throw new Error('Failed to fetch release');
+        // First try to get the marked "latest" release
+        let response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+        let data;
 
-        const data = await response.json();
+        if (response.status === 404) {
+            // If 404, it might because only pre-releases exist. Fetch all releases instead.
+            console.log('No "latest" release found. Attempting to fetch from all releases...');
+            response = await fetch(`https://api.github.com/repos/${repo}/releases`);
+            const allReleases = await response.json();
+            if (allReleases && allReleases.length > 0) {
+                data = allReleases[0]; // Take the most recent one
+            }
+        } else if (response.ok) {
+            data = await response.json();
+        }
+
+        if (!data) throw new Error('No release data found');
+
         // Look for .exe in assets
         const exeAsset = data.assets.find(asset => asset.name.endsWith('.exe'));
 
@@ -152,13 +166,15 @@ async function fetchLatestRelease() {
                 downloadBtn.appendChild(versionSpan);
             }
         } else {
-            // Fallback to the latest release page if no exe found
-            downloadBtn.href = `https://github.com/${repo}/releases/latest`;
+            // Fallback to the latest release page if no exe found, or the specific release page
+            downloadBtn.href = data.html_url || `https://github.com/${repo}/releases/latest`;
         }
     } catch (err) {
         console.error('GitHub API Error:', err);
-        // Default fallback to releases page
-        downloadBtn.href = `https://github.com/${repo}/releases`;
+        // Fallback is already set in HTML, but we ensure it remains a valid link
+        if (downloadBtn.href === '#' || !downloadBtn.href) {
+            downloadBtn.href = `https://github.com/${repo}/releases`;
+        }
     }
 }
 
