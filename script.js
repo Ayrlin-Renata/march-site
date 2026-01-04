@@ -34,7 +34,6 @@ function initTheme() {
         icon.textContent = 'dark_mode';
         updateLogos(true);
     } else {
-        // Fallback for no saved theme and no preference (default to dark in HTML)
         updateLogos(body.classList.contains('dark-mode'));
     }
 
@@ -49,7 +48,7 @@ function initTheme() {
 }
 
 /**
- * Localization (i18n) Logic
+ * Localization
  */
 function initLanguage() {
     const langSelector = document.querySelector('.lang-selector');
@@ -61,23 +60,19 @@ function initLanguage() {
     const savedLang = localStorage.getItem('lang') || navigator.language.split('-')[0] || 'en';
     const finalLang = i18nData[savedLang] ? savedLang : 'en';
 
-    // Set initial state
     updateLanguage(finalLang);
 
-    // Toggle menu
     langToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         const isActive = langSelector.classList.toggle('active');
         langToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Close menu on click outside
     document.addEventListener('click', () => {
         langSelector.classList.remove('active');
         langToggle.setAttribute('aria-expanded', 'false');
     });
 
-    // Handle item selection
     langItems.forEach(item => {
         item.addEventListener('click', () => {
             const selected = item.getAttribute('data-value');
@@ -93,14 +88,12 @@ function updateLanguage(lang) {
     const data = i18nData[lang];
     if (!data) return;
 
-    // Update current lang text in UI
     const currentItem = document.querySelector(`.lang-item[data-value="${lang}"]`);
     const currentLangText = document.getElementById('current-lang');
     if (currentItem && currentLangText) {
         currentLangText.textContent = currentItem.textContent;
     }
 
-    // Update active class in menu
     document.querySelectorAll('.lang-item').forEach(item => {
         item.classList.toggle('active', item.getAttribute('data-value') === lang);
     });
@@ -112,12 +105,11 @@ function updateLanguage(lang) {
         }
     });
 
-    // Update document title and description
     document.title = lang === 'en' ? 'March Photobox' : `March Photobox | ${data.hero_title.replace('<span>', '').replace('</span>', '').replace('<span>', '').replace('</span>', '')}`;
 }
 
 /**
- * Fetch latest EXE from GitHub
+ * Fetch GitHub
  */
 async function fetchLatestRelease() {
     const repo = 'Ayrlin-Renata/march';
@@ -131,7 +123,6 @@ async function fetchLatestRelease() {
     }
 
     try {
-        // First try to get the marked "latest" release
         let response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
         let data;
 
@@ -141,7 +132,7 @@ async function fetchLatestRelease() {
             response = await fetch(`https://api.github.com/repos/${repo}/releases`);
             const allReleases = await response.json();
             if (allReleases && allReleases.length > 0) {
-                data = allReleases[0]; // Take the most recent one
+                data = allReleases[0];
             }
         } else if (response.ok) {
             data = await response.json();
@@ -149,7 +140,6 @@ async function fetchLatestRelease() {
 
         if (!data) throw new Error('No release data found');
 
-        // Look for .exe in assets
         const exeAsset = data.assets.find(asset => asset.name.endsWith('.exe'));
 
         if (exeAsset) {
@@ -170,12 +160,11 @@ async function fetchLatestRelease() {
                 }
             }
         } else {
-            // Fallback to the latest release page if no exe found, or the specific release page
             downloadBtn.href = data.html_url || `https://github.com/${repo}/releases/latest`;
         }
     } catch (err) {
         console.error('GitHub API Error:', err);
-        // Fallback is already set in HTML, but we ensure it remains a valid link
+        // Fallback is already set in HTML, but ensure it remains a valid link
         if (downloadBtn.href === '#' || !downloadBtn.href) {
             downloadBtn.href = `https://github.com/${repo}/releases`;
         }
@@ -232,7 +221,7 @@ function initCanvasAnimation() {
     class SnakingLine {
         constructor() {
             this.points = [];
-            this.pointCount = 80; // High point count for smooth S-curves
+            this.pointCount = 80;
             this.speed = 0.0009 + Math.random() * 0.0006;
             this.offset = Math.random() * 1000;
             this.seedX = Math.random() * 10;
@@ -246,7 +235,6 @@ function initCanvasAnimation() {
         update(time, otherLines) {
             const head = this.points[0];
 
-            // Complex snaking S-curve movement using nested sines for "screensaver" look
             const t = time * this.speed + this.offset;
             const targetX = width / 2 + Math.sin(t * 0.4 + this.seedX) * (width * 0.3) + Math.cos(t * 0.15) * (width * 0.15);
             const targetY = height / 2 + Math.cos(t * 0.35 + this.seedY) * (height * 0.3) + Math.sin(t * 0.2) * (height * 0.15);
@@ -255,7 +243,6 @@ function initCanvasAnimation() {
             head.x += (targetX - head.x) * 0.02;
             head.y += (targetY - head.y) * 0.02;
 
-            // Interaction: subtly repel/attract to other line heads
             otherLines.forEach(other => {
                 if (other === this) return;
                 const dx = head.x - other.points[0].x;
@@ -268,7 +255,7 @@ function initCanvasAnimation() {
                 }
             });
 
-            // Tail follow with high "lag" for flowy movement
+            // Tail follow 
             for (let i = 1; i < this.pointCount; i++) {
                 const p = this.points[i];
                 const prev = this.points[i - 1];
@@ -281,7 +268,7 @@ function initCanvasAnimation() {
             ctx.beginPath();
             ctx.moveTo(this.points[0].x, this.points[0].y);
 
-            // Path smoothing with quadratic curves
+            // Path smoothing 
             for (let i = 1; i < this.points.length - 1; i++) {
                 const xc = (this.points[i].x + this.points[i + 1].x) / 2;
                 const yc = (this.points[i].y + this.points[i + 1].y) / 2;
@@ -292,7 +279,7 @@ function initCanvasAnimation() {
             const colorB = getComputedStyle(document.body).getPropertyValue('--accent-pink').trim();
             const isDark = document.body.classList.contains('dark-mode');
 
-            // Dynamic gradient along the "tail" or just overall
+            // gradient
             const grad = ctx.createLinearGradient(this.points[0].x, this.points[0].y, this.points[this.pointCount - 1].x, this.points[this.pointCount - 1].y);
             grad.addColorStop(0, colorA);
             grad.addColorStop(1, colorB);
